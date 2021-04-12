@@ -27,7 +27,7 @@ const routes: RouteConfig[] = [
         // 业务路由
         path: '/home',
         name: 'Layout',
-        component: (resolve) => require(['@/views/pages/Layout/index'], resolve),
+        component: (resolve) => require(['@/views/Layout/index'], resolve),
         redirect: '/home/home1',
         children: [
             {
@@ -51,7 +51,7 @@ const routes: RouteConfig[] = [
         path: '/list',
         name: 'Layout',
         redirect: '/list/list1',
-        component: (resolve) => require(['@/views/pages/Layout/index'], resolve),
+        component: (resolve) => require(['@/views/Layout/index'], resolve),
         children: [
             {
                 path: 'list1',

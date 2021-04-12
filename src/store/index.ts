@@ -5,11 +5,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     strict: process.env.NODE_ENV === 'development',
-    state: {},
-    getters: {},
-    mutations: {},
-    actions: {}
-    // modules: {
-    //     RootStore
-    // }
+    state: {
+        ...RootStore.state
+    },
+    getters: {
+        ...RootStore.getters
+    },
+    mutations: {
+        ...RootStore.mutations
+    },
+    actions: {
+        ...RootStore.actions
+    }
 });
