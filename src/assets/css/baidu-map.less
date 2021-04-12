@@ -1,0 +1,203 @@
+/**
+ * 用于覆盖百度地图的样式
+ */
+// 隐藏百度地图 Logo 和 版权文字
+.anchorBL {
+    &.BMap_cpyCtrl,
+    a {
+        display: none;
+    }
+}
+
+// 水波纹动画
+@keyframes water-animate {
+    0% {
+        transform: scale(0.98);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.water-animation-in-map {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    .water-animation1,
+    .water-animation2,
+    .water-animation3 {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 167, 255, 0.25);
+        box-shadow: 0 0 0.01rem 0.08rem rgba(15, 167, 255, 0.25);
+        border-radius: 100%;
+        z-index: 1;
+        opacity: 0;
+    }
+
+    .water-animation1 {
+        animation: water-animate 3s 0.5s ease-out;
+    }
+
+    .water-animation2 {
+        animation: water-animate 3s 1.5s ease-out;
+    }
+
+    .water-animation3 {
+        animation: water-animate 3s 2.5s ease-out;
+    }
+
+    &.water-animation-in-map-infinite {
+        .water-animation1 {
+            animation: water-animate 3s 0.5s ease-out infinite;
+        }
+
+        .water-animation2 {
+            animation: water-animate 3s 1.5s ease-out infinite;
+        }
+
+        .water-animation3 {
+            animation: water-animate 3s 2.5s ease-out infinite;
+        }
+    }
+}
+
+.cluster-marker-container {
+    position: relative;
+    background: rgb(16, 87, 160);
+    width: 100%;
+    padding: 6px 8.5px;
+    border-radius: 4px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: 20px;
+        display: block;
+        width: 10px;
+        height: 10px;
+        transform: rotate(45deg) translate(0, 50%);
+        background: rgb(16, 87, 160);
+    }
+
+    .title {
+        font-size: 14px;
+        color: #fff;
+        letter-spacing: 0.5px;
+        line-height: 22px;
+        padding-left: 4px;
+        font-weight: 500;
+    }
+
+    ul {
+        max-height: 123px;
+        overflow: auto !important;
+
+        li {
+            line-height: 24px;
+            cursor: pointer;
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 0 5px;
+            color: #d6e7ff;
+
+            &:hover {
+                background: #2491ff;
+                border-radius: 2px;
+                color: #fff;
+            }
+
+            span.txt {
+                font-size: 12px;
+                color: #d6e7ff;
+            }
+
+            span.icon {
+                display: inline-block;
+                width: 0.08rem;
+                height: 0.08rem;
+                border-radius: 50%;
+                margin-right: 0.05rem;
+                vertical-align: middle;
+            }
+
+            span.online-icon {
+                background: #0bff5f;
+            }
+
+            span.offline-icon {
+                background: #557ac9;
+            }
+
+            img {
+                display: inline-block;
+                width: 13.5px;
+                height: 13.5px;
+                vertical-align: middle;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.service-area-label-container {
+    color: #fff;
+    font-size: 14px;
+
+    .service-name {
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    .service-info {
+        font-size: 12px;
+        line-height: 15px;
+
+        span {
+            color: #d6e7ff;
+        }
+    }
+}
+
+.video-map-lable-container {
+    position: relative;
+    background: rgb(16, 87, 160);
+    width: 100%;
+    padding: 6px 8.5px;
+    border-radius: 4px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        display: block;
+        width: 10px;
+        height: 10px;
+        transform: rotate(45deg) translate(0, 50%);
+        background: rgb(16, 87, 160);
+    }
+
+    ul {
+        li {
+            line-height: 24px;
+            cursor: pointer;
+            max-width: 240px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 0 5px;
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,112 @@
+/**
+ * 运营管理中心业务相关样式，需手动在组件中调用，防止意外覆盖其他样式
+ */
+@operation-tableHeaderBGColor: #fafafa;
+/*
+  drawer 样式
+*/
+.authority-drawer-data-container () {
+    .el-drawer__header {
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        line-height: 24px;
+        font-size: 18px;
+        color: #303133;
+    }
+
+    .insert-data-form {
+        overflow: auto;
+    }
+
+    .deawer-btn-group {
+        margin: 5px 0 0 87px;
+    }
+}
+//drawer内部盒子的样式
+.drawer-data-container() {
+    .form-item-group {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        .insert-data-form-item {
+            flex: auto;
+            margin: 0 20px 15px -56px;
+
+            .el-form-item__content {
+                margin-left: 0;
+            }
+
+            &:nth-child(2n) {
+                margin-right: 0;
+            }
+        }
+
+        .form-item-inner {
+            width: 245px;
+        }
+
+        .el-form-item__error {
+            line-height: 2;
+        }
+    }
+
+    .form-item-title {
+        margin-left: 20px;
+        margin-bottom: 15px;
+
+        .icon {
+            display: inline-block;
+            height: 15px;
+            width: 4px;
+            background: #e6a23c;
+            margin-right: 3px;
+            vertical-align: text-bottom;
+        }
+    }
+}
+//操作日志的样式
+.drawer-edit-log-container() {
+    .form-item-title {
+        margin-left: 20px;
+        margin-bottom: 15px;
+
+        .icon {
+            display: inline-block;
+            height: 15px;
+            width: 4px;
+            background: rgb(206, 105, 75);
+            margin-right: 3px;
+            vertical-align: text-bottom;
+        }
+    }
+
+    .insert-data-form-item {
+        float: left;
+        margin: 0 0 0 40px;
+    }
+
+    .el-form-btn {
+        float: left;
+        margin-left: 20px;
+    }
+}
+
+// 统一表格样式
+.operation-management-data-container () {
+    padding: 10px 20px;
+    background: #fff;
+
+    .th-cell {
+        background: @operation-tableHeaderBGColor;
+    }
+
+    .td-cell {
+        padding: 8px 0;
+    }
+}

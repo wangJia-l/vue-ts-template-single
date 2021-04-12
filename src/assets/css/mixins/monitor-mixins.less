@@ -1,0 +1,719 @@
+/**
+ * 监控管理中心业务相关样式，需手动在组件中调用，防止意外覆盖其他样式
+ */
+
+@monitor-mainBgColor: #213c75;
+@monitor-textColor: #9fbcff;
+@monitor-activeTextColor: #c0d3f0;
+@monitor-mapBgColor: #152546;
+
+// 监控管理 - 卡片标题的icon
+.monitor-title-icon() {
+    display: inline-block;
+    width: 1.25vw;
+    height: 1.25vw;
+    margin-right: 0.625vw;
+    vertical-align: middle;
+}
+
+// 监控管理 - Dialog 基本样式
+.monitor-dialog-base() {
+    background-color: #1e366e !important;
+    border-radius: 0.15rem !important;
+
+    .el-dialog__header {
+        border-bottom: none !important;
+        font-size: 0.24rem;
+        color: #c0d3f0;
+        padding: 0.2rem 0.32rem 0;
+
+        .el-dialog__close {
+            color: #80a6ff;
+            font-size: 0.26rem;
+        }
+    }
+
+    .el-dialog__body {
+        padding: 0 0.32rem 0.3rem;
+    }
+
+    .el-dialog__headerbtn {
+        position: absolute;
+        top: 0.2rem;
+        right: 0.2rem;
+        font-size: 0.16rem;
+    }
+}
+
+// 监控管理 - Dialog 标题 icon 样式
+.monitor-dialog-title-icon(@url) {
+    display: inline-block;
+    width: 0.18rem;
+    min-width: 12px;
+    height: 0.18rem;
+    min-height: 12px;
+    background: url('@{url}') no-repeat center center;
+    background-size: cover;
+    margin-right: 0.1rem;
+    vertical-align: middle;
+}
+
+// 监控管理 - 列表项目前面的小圆点
+.monitor-list-item-circle() {
+    content: '';
+    display: inline-block;
+    width: 0.06rem;
+    height: 0.06rem;
+    border-radius: 50%;
+    background: rgba(97, 127, 187, 0.8);
+    margin-right: 0.76vw;
+    vertical-align: middle;
+}
+
+// 监控管理 - 弹出框基本样式
+.monitor-tooltip-bottom(@position: bottom) {
+    background: #2f9fff;
+    width: 20vw;
+    border-color: #2f9fff;
+    color: #fff;
+
+    &[x-placement^='@{position}'] .popper__arrow {
+        border-bottom-color: #2f9fff !important;
+
+        &::after {
+            border-bottom-color: #2f9fff !important;
+        }
+    }
+}
+
+// 监控管理 - 翻页
+.monitor-pagination() {
+    text-align: right;
+    color: #9fbcff;
+    background: #1e366e;
+    font-size: 0.14rem;
+
+    .btn-prev,
+    .btn-next {
+        color: inherit;
+        background: none;
+        font-size: inherit;
+        height: 0.32rem;
+        line-height: 0.32em;
+
+        .el-icon {
+            font-size: inherit;
+        }
+
+        &:disabled {
+            color: #4d659e;
+            background: none;
+        }
+    }
+
+    .el-pager {
+        li {
+            background: none;
+            min-width: 0.32rem;
+            height: 0.32rem;
+            line-height: 0.32rem;
+            font-size: 0.14rem;
+            color: #9fbcff;
+            font-weight: normal;
+
+            &.active {
+                color: #c0d3f0;
+                background: #3a63c2;
+                border-radius: 2px;
+            }
+        }
+    }
+
+    .el-pagination__sizes {
+        height: 0.32rem;
+        line-height: 0.32rem;
+
+        .el-input {
+            width: 0.96rem;
+            color: #9fbcff;
+            font-size: 0.14rem;
+
+            &.is-focus {
+                border: 1px solid #5782e6;
+            }
+
+            .el-input__inner {
+                color: inherit;
+                font-size: inherit;
+                background: #284485;
+                border-color: #284485;
+                padding: 0 0.22rem 0 0;
+            }
+        }
+    }
+
+    .el-pagination__jump {
+        color: #9fbcff;
+        min-width: 0.35rem;
+        margin-left: 0.18rem;
+        font-size: 0.14rem;
+
+        .el-pagination__editor.is-in-pagination.el-input {
+            width: 0.48rem;
+            height: 0.32rem;
+            line-height: 0.32rem;
+            font-size: 0.14rem;
+            color: inherit;
+            margin: 0 0.1rem;
+
+            .el-input__inner {
+                height: inherit;
+                color: inherit;
+                line-height: inherit;
+                font-size: inherit;
+                border-radius: 0.02rem;
+                background: #284485;
+                border: none;
+            }
+        }
+    }
+}
+
+// 监控管理 - input 输入框样式
+.monitor-input-base(@backgroundColor: #284485, @color: #9fbcff) {
+    .el-input {
+        font-size: 0.15rem;
+        width: 1.6rem;
+
+        &.is-focus {
+            .el-input__inner {
+                border: 1px solid #5782e6;
+                color: #e9f0ff;
+            }
+        }
+
+        .el-input__inner {
+            height: 0.4rem;
+            line-height: 0.4rem;
+            border: 1px solid #284485;
+            background: @backgroundColor;
+            color: @color;
+            font-weight: normal;
+        }
+    }
+
+    .el-input__suffix {
+        .el-input__suffix-inner {
+            .el-input__icon {
+                height: 0.4rem;
+                line-height: 0.4rem;
+                color: #829cd9;
+                font-size: 0.16rem;
+            }
+        }
+    }
+}
+
+// 监控管理 - popper 箭头输入框样式
+.monitor-popper-arrow() {
+    &.el-popper[x-placement^=top] .popper__arrow,
+    &.el-popper[x-placement^='top'] .popper__arrow::after {
+        border-top-color: #284485;
+    }
+
+    &.el-popper[x-placement^=bottom] .popper__arrow,
+    &.el-popper[x-placement^='bottom'] .popper__arrow::after {
+        border-bottom-color: #284485;
+    }
+}
+
+// 监控管理 - 输入弹出框的确认按钮栏
+.monitor-input-footer(@backgroundColor: #284485) {
+    border-top: 1px solid #192f61;
+    background-color: @backgroundColor;
+
+    .el-button--text,
+    .cancel {
+        color: #678de6;
+        font-size: 0.14rem;
+
+        span {
+            font-weight: normal;
+        }
+    }
+
+    .el-button--default,
+    .confirm {
+        color: #c0d3f0;
+        background: none;
+        border: none;
+        font-size: 0.14rem;
+
+        span {
+            font-weight: normal;
+        }
+
+        &:hover {
+            color: #fff;
+            background: none;
+            border: none;
+        }
+
+        &:active {
+            color: #fff;
+            background: none;
+            border: none;
+        }
+    }
+}
+
+// 监控管理 - select 选择器输入框样式
+.monitor-select-input() {
+    &.el-select {
+        .monitor-input-base();
+    }
+}
+
+// 监控管理 - select 选择器弹窗样式
+.monitor-select-drop-down() {
+    &.el-select-dropdown {
+        background: #284485;
+        border: 1px solid #284485;
+        width: 0.96rem !important;
+
+        .el-select-dropdown__item {
+            color: #9fbcff;
+            font-size: 0.15rem;
+            font-weight: 400;
+            padding: 0 0 0 0.08rem;
+
+            &.selected {
+                color: #e9f0ff;
+                background: #3256a8;
+
+                &.hover {
+                    background: #2b4a8f;
+                }
+            }
+
+            &.hover {
+                background: #2b4a8f;
+            }
+        }
+    }
+
+    .monitor-popper-arrow();
+}
+
+// 监控管理 - 时间日期选择器输入框样式
+.monitor-select-date-time-picker() {
+    &.el-date-editor--datetimerange {
+        position: relative;
+        width: 5rem;
+        padding: 0.03rem 0.1rem;
+        color: #9fbcff;
+        background: #284485;
+        border: 1px solid #284485;
+        height: 0.4rem;
+        line-height: 0.4rem;
+        vertical-align: mathematical;
+
+        .el-range__icon {
+            position: absolute;
+            top: 0.01rem;
+            right: 0.16rem;
+            font-size: 0.16rem;
+            color: #9fbcff;
+            line-height: 0.32rem;
+        }
+
+        &:hover {
+            .el-range__icon {
+                display: none;
+            }
+        }
+
+        .el-range__close-icon {
+            position: absolute;
+            top: 0.01rem;
+            right: 0.16rem;
+            width: 0.25rem;
+            font-size: 0.16rem;
+            color: #9fbcff;
+            line-height: 1;
+        }
+
+        &.is-active {
+            border: 1px solid #5782e6;
+
+            .el-range-input {
+                color: #e9f0ff;
+
+                &::-webkit-input-placeholder {
+                    color: #e9f0ff !important;
+                }
+
+                & + .el-range-separator {
+                    color: #e9f0ff;
+                }
+            }
+        }
+
+        .el-range-input {
+            color: #9fbcff;
+            background: #284485;
+            width: 42%;
+            font-size: 0.15rem;
+
+            &::-webkit-input-placeholder {
+                color: #9fbcff !important;
+            }
+        }
+
+        .el-range-separator {
+            color: #9fbcff;
+            background: #284485;
+            padding: 0 0.05rem;
+            font-size: 0.15rem;
+            line-height: 0.32rem;
+        }
+    }
+}
+
+// 监控管理 - 事件日期选择器下拉框样式
+.monitor-date-picker-panel() {
+    &.el-picker-panel {
+        width: 620px;
+        background: #284485;
+        border: 1px solid #284485;
+
+        .el-picker-panel__body-wrapper {
+            .el-picker-panel__body {
+                .el-date-range-picker__time-header {
+                    border-bottom: 1px solid #192f61;
+
+                    // 日期 + 时间 输入框
+                    .el-date-range-picker__editors-wrap {
+                        .el-date-range-picker__time-picker-wrap {
+                            .monitor-input-base(#3256a8, #9fbcff);
+
+                            .el-input {
+                                width: auto;
+                            }
+
+                            .el-input__inner {
+                                cursor: pointer;
+
+                                &:focus {
+                                    border: 1px solid #5782e6;
+                                }
+                            }
+
+                            // 时间选择器
+                            .el-time-panel.el-popper {
+                                background: #3153a3;
+                                box-shadow: 0 0.04rem 0.18rem 0 rgba(16, 33, 75, 0.4);
+                                border: 1px solid #3153a3;
+
+                                .el-time-panel__content {
+                                    &::after,
+                                    &::before {
+                                        border-top: 1px solid #5276cc;
+                                        border-bottom: 1px solid #5276cc;
+                                        height: 0.38rem;
+                                        line-height: 0.38rem;
+                                    }
+
+                                    .el-time-spinner__list {
+                                        .el-time-spinner__item {
+                                            color: #9fbcff;
+                                            font-weight: normal;
+                                            cursor: pointer;
+                                            height: 0.38rem;
+                                            line-height: 0.38rem;
+
+                                            &.active {
+                                                color: #c0d3f0;
+                                                height: 0.38rem;
+                                                line-height: 0.38rem;
+                                            }
+
+                                            &:hover:not(.disabled):not(.active) {
+                                                background: #3153a3;
+                                                cursor: pointer;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .el-time-panel__footer {
+                                    .monitor-input-footer(#3153a3);
+                                }
+                            }
+                        }
+                    }
+
+                    .el-icon-arrow-right {
+                        color: #9fbcff;
+                        font-size: 0.16rem;
+                    }
+                }
+
+                .el-picker-panel__content {
+                    padding: 0.16rem;
+                }
+
+                // 日期选择器
+                .el-date-range-picker__content {
+                    &.is-left {
+                        border-right: 1px solid #192f61;
+                    }
+
+                    .el-date-range-picker__header {
+                        .el-picker-panel__icon-btn {
+                            color: #c0d3f0;
+                            font-size: 0.16rem;
+                        }
+
+                        div {
+                            font-size: 0.14rem;
+                            color: #c0d3f0;
+                            font-weight: 400;
+                        }
+                    }
+
+                    .el-date-table {
+                        margin-top: 0.2rem;
+
+                        th {
+                            border: none;
+                            color: #fff;
+                        }
+
+                        td {
+                            padding: 0;
+
+                            div {
+                                padding: 0;
+                                height: 24px;
+                            }
+
+                            &.available {
+                                color: #c0d3f0;
+                            }
+
+                            &.next-month,
+                            &.prev-month {
+                                color: #5e7bbd;
+                            }
+
+                            &.start-date,
+                            &.end-date {
+                                span {
+                                    background-color: #198cff;
+                                    font-weight: 400;
+                                }
+                            }
+
+                            &.start-date {
+                                div {
+                                    margin-left: 10px;
+                                }
+                            }
+
+                            &.end-date {
+                                div {
+                                    margin-right: 10px;
+                                }
+                            }
+                        }
+                    }
+
+                    .el-date-table td.in-range div,
+                    .el-date-table td.in-range div:hover,
+                    .el-date-table.is-week-mode .el-date-table__row.current div,
+                    .el-date-table.is-week-mode .el-date-table__row:hover div {
+                        background-color: #3256a8;
+                    }
+
+                    .el-date-table td.in-range {
+                        &:first-child {
+                            div {
+                                border-top-left-radius: 15px;
+                                border-bottom-left-radius: 15px;
+                                margin-left: 10px;
+                            }
+
+                            &.start-date {
+                                div {
+                                    margin-left: 10px;
+                                }
+                            }
+
+                            &.end-date {
+                                div {
+                                    margin-left: 10px;
+                                }
+                            }
+                        }
+
+                        &:last-child {
+                            div {
+                                border-top-right-radius: 15px;
+                                border-bottom-right-radius: 15px;
+                                margin-right: 7px;
+                            }
+
+                            &.start-date {
+                                div {
+                                    margin-right: 10px;
+                                }
+                            }
+
+                            &.end-date {
+                                div {
+                                    margin-right: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .el-picker-panel__footer {
+            .monitor-input-footer();
+        }
+
+        .monitor-popper-arrow();
+    }
+}
+
+// 监控管理 - 表格基本样式
+.monitor-table-base() {
+    &::before {
+        height: 0;
+    }
+
+    &.el-table td.gutter,
+    .el-table__body-wrapper,
+    tr {
+        background: #2b4a8f !important;
+    }
+
+    &.el-table thead,
+    &.el-table th.gutter,
+    .el-table__header-wrapper,
+    .el-table__header {
+        background: #192f61 !important;
+    }
+
+    // 组件中设置 row-class-name="content-table-row"
+    .content-table-row {
+        background: #2b4a8f;
+
+        &:hover {
+            background-color: #2b4a8f;
+        }
+
+        &:hover > td {
+            background-color: #2b4a8f;
+        }
+    }
+
+    // 组件中设置 header-cell-class-name="content-table-header-cell"
+    .content-table-header-cell {
+        padding: 1.48vh 0;
+        font-size: 0.18rem;
+        color: #9fbcff;
+        background: #192f61;
+        border: 1px solid  #192f61;
+        font-weight: normal;
+    }
+
+    // 组件中设置 cell-class-name="content-table-cell"
+    .content-table-cell {
+        padding: 1.48vh 0;
+        font-size: 0.16rem;
+        color: #9fbcff;
+        background: #2b4a8f;
+        border-top: none;
+        border-bottom: 1px solid #223c78;
+    }
+
+    .el-table__empty-block {
+        background: #2b4a8f;
+        background: url('~@/assets/images/no-data.png') no-repeat center 50%;
+        background-size: 0.8rem;
+
+        .el-table__empty-text {
+            font-size: 0.16rem;
+            margin-top: 11vh;
+            color: #9fbcff;
+        }
+    }
+}
+
+// 监控管理中心行内表单
+.monitor-inline-form-base() {
+    &.el-form--inline {
+        .el-form-item {
+            margin: 0 0.4rem 0 0;
+            vertical-align: middle;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            .el-form-item__label {
+                display: inline;
+                margin-right: 0.05rem;
+                padding: 0;
+                color: #9fbcff;
+                font-size: 0.16rem;
+                vertical-align: middle;
+                line-height: 0.4rem;
+            }
+
+            .el-form-item__content {
+                font-size: 0.16rem;
+                vertical-align: middle;
+                line-height: 0.4rem;
+            }
+        }
+    }
+}
+
+// 监控管理中心的地图遮罩
+.monitor-map-overlay(@topWidth, @rightWidth, @bottomWidth, @leftWidth) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    box-shadow: 0 @topWidth 1vh #121a35 inset, @leftWidth 0 2vw #121a35 inset, -@rightWidth 0 2vw #121a35 inset,
+        -@bottomWidth 0 1vh #121a35 inset;
+    pointer-events: none;
+}
+
+// 监控管理中心的查看更多按钮
+.show-more-button() {
+    width: 100%;
+    height: 3.7vh;
+    line-height: 3.7vh;
+    font-size: 0.16rem;
+    text-align: center;
+    background: #1e366e;
+    color: #9fbcff;
+    border-radius: 0.15rem;
+    z-index: 2;
+
+    .nice-btn();
+    .linear-transition();
+
+    &:hover {
+        color: #fff;
+    }
+}

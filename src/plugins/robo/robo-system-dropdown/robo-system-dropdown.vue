@@ -1,0 +1,176 @@
+<template>
+    <el-dropdown
+        class="robo-system-dropdown"
+        placement="bottom"
+        @command="handleCommand"
+        @visible-change="handleVisibleChange"
+    >
+        <span class="robo-system-dropdown-link">
+            <i v-if="showUserIcon" class="robo-system-dropdown-user-icon"></i>
+            <span class="robo-system-dropdown-link-text">{{ username }}</span>
+            <i class="robo-system-dropdown-link-icon el-icon-caret-bottom" :style="linkIconStyle"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown" class="robo-system-dropdown-menu">
+            <el-dropdown-item command="logout" class="robo-system-dropdown-menu-item">
+                <i class="logout-icon"></i>
+                <span class="logout-text">退出登录</span>
+            </el-dropdown-item>
+        </el-dropdown-menu>
+    </el-dropdown>
+</template>
+
+<script lang="ts">
+import {Component, Vue, Prop} from 'vue-property-decorator';
+import {CommonUrls} from '@/utils';
+import {State, Action, Getter} from 'vuex-class';
+import {ROOT_LOGOUT_ACTION} from '@/store/root-store/store-types';
+
+@Component
+export default class RoboSystemDropdown extends Vue {
+    @Prop({type: Boolean, default: false}) showUserIcon!: boolean;
+
+    @State username!: string;
+
+    @Getter isAdmin!: () => boolean;
+
+    @Action(ROOT_LOGOUT_ACTION) logout!: () => Promise<boolean>;
+
+    linkIconStyle = {
+        transform: 'rotate(0deg)'
+    };
+
+    handleCommand(command: string) {
+        switch (command) {
+            case 'logout':
+            default: {
+                this.logoutHandler();
+            }
+        }
+    }
+
+    handleVisibleChange(visible: boolean) {
+        const angle = visible ? 180 : 0;
+        this.linkIconStyle.transform = `rotate(${angle}deg)`;
+    }
+
+    logoutHandler() {
+        this.$confirm('您确定要退出登录吗?', '提示', {
+            type: 'warning'
+        })
+            .then(async () => {
+                const isLogoutSuccess = await this.logout();
+                if (isLogoutSuccess) {
+                    this.$message({
+                        type: 'success',
+                        message: '已退出',
+                        duration: 1000,
+                        onClose: () => {
+                            this.$router.push(CommonUrls.Login).catch(() => {});
+                        }
+                    });
+                }
+            })
+            .catch(() => {});
+    }
+}
+</script>
+
+<style scoped lang="less">
+.robo-system-dropdown {
+    font-size: 0.14rem;
+    color: #fff;
+    cursor: pointer;
+
+    .robo-system-dropdown-user-icon {
+        display: inline-block;
+        width: 0.24rem;
+        height: 0.24rem;
+        background: #4d97ff url('~@/assets/icons/icon-user.png') no-repeat center center;
+        background-size: contain;
+        vertical-align: middle;
+        border-radius: 50%;
+    }
+
+    .robo-system-dropdown-link-icon {
+        color: #4d79bd;
+        transition: all linear 0.1s;
+        vertical-align: middle;
+    }
+
+    .robo-system-dropdown-link-text {
+        margin-right: 0.04rem;
+        vertical-align: middle;
+    }
+
+    .robo-system-dropdown-link-icon + .robo-system-dropdown-link-text {
+        margin-left: 0.1rem;
+    }
+}
+</style>
+<style lang="less">
+.el-popper {
+    &.robo-system-dropdown-menu {
+        padding: 0;
+        font-size: 0.14rem;
+        box-shadow: 0 12px 16px 1px rgba(0, 21, 51, 0.03);
+        border-radius: 4px;
+        border: none;
+
+        .el-dropdown-menu__item {
+            &.robo-system-dropdown-menu-item {
+                padding: 0 0.2rem;
+                height: 0.48rem;
+                line-height: 0.48rem;
+                font-size: 0.14rem;
+
+                &:first-child {
+                    border-top-left-radius: 4px;
+                    border-top-right-radius: 4px;
+
+                    &:hover ~ .popper__arrow::after,
+                    &:active ~ .popper__arrow::after {
+                        border-bottom-color: #f2f7ff;
+                    }
+                }
+
+                &:nth-last-child(2) {
+                    border-bottom-left-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                }
+
+                .logout-icon {
+                    display: inline-block;
+                    width: 0.16rem;
+                    height: 0.16rem;
+                    background: url('~@/assets/icons/icon-logout.png') no-repeat center center;
+                    background-size: cover;
+                    vertical-align: middle;
+                }
+
+                .logout-text {
+                    font-size: 0.14rem;
+                    color: #333;
+                    vertical-align: middle;
+                }
+
+                &:hover {
+                    background: #f2f7ff;
+                }
+
+                &:active {
+                    background: #f2f7ff;
+
+                    .logout-icon {
+                        background: url('~@/assets/icons/icon-logout-active.png') no-repeat center center;
+                        background-size: cover;
+                    }
+
+                    .logout-text {
+                        color: #006aff;
+                    }
+                }
+            }
+        }
+    }
+}
+</style>
