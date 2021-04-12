@@ -3,7 +3,7 @@ import {MenuConfig} from './types';
 const menuConfigs: MenuConfig[] = [
     {
         path: '/home',
-        icon: 'system',
+        icon: 'basic',
         title: '首页',
         children: [
             {

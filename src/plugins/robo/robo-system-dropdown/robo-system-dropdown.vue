@@ -7,7 +7,7 @@
     >
         <span class="robo-system-dropdown-link">
             <i v-if="showUserIcon" class="robo-system-dropdown-user-icon"></i>
-            <span class="robo-system-dropdown-link-text">{{ username }}</span>
+            <span class="robo-system-dropdown-link-text">{{ username ? username : '用户名' }}</span>
             <i class="robo-system-dropdown-link-icon el-icon-caret-bottom" :style="linkIconStyle"></i>
         </span>
         <el-dropdown-menu slot="dropdown" class="robo-system-dropdown-menu">
@@ -78,7 +78,7 @@ export default class RoboSystemDropdown extends Vue {
 <style scoped lang="less">
 .robo-system-dropdown {
     font-size: 0.14rem;
-    color: #fff;
+    // color: #fff;
     cursor: pointer;
 
     .robo-system-dropdown-user-icon {
