@@ -1,7 +1,7 @@
 <template>
     <div class="login-container">
         <div class="login-left">
-            <div class="logo-container"><img src="~@/assets/images/image-logo.png" alt="logo" /></div>
+            <div class="logo-container"><img src="~@/static/images/image-logo.png" alt="logo" /></div>
         </div>
         <div class="login-right">
             <div class="login-right-content">
@@ -84,7 +84,7 @@ import {ElForm} from 'element-ui/types/form';
 import {validateELForm} from '@/utils';
 import {RootLoginResponseProcessed} from '@/store/root-store/interface-types';
 import {ElFormItem} from 'element-ui/types/form-item';
-import ChangePassword from '@/views/common/changePassword.vue';
+import ChangePassword from '@/components/common/changePassword.vue';
 
 const crypto = require('crypto');
 
@@ -189,7 +189,7 @@ export default class Login extends Vue {
 
     .login-left {
         flex: 1 1 60.4%;
-        background: #0a6cef url('~@/assets/images/background-login.png') left center no-repeat;
+        background: #0a6cef url('~@/static/images/background-login.png') left center no-repeat;
         background-size: cover;
 
         .logo-container {

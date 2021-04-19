@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import notFoundImg from '@/assets/images/404.png';
+import notFoundImg from '@/static/images/404.png';
 
 @Component
 export default class NotFound extends Vue {

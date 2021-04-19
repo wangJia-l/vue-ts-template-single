@@ -30,7 +30,7 @@ import {transform, WGS84, BD09} from 'gcoord';
 import {getWithByScreen} from '@/utils';
 import {loadingCounter} from '@/utils/network-helper/loading-counter';
 
-import {MapApi} from '@/config';
+import {MapApi} from '@/utils/map-helper/config';
 import {styleJson} from '@/utils/map-helper/custorm-style';
 
 export const RMap = MapApi;

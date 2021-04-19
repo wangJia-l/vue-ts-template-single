@@ -21,29 +21,29 @@ const routes: RouteConfig[] = [
     },
     {
         path: CommonUrls.Login,
-        component: lazyLoadHelper('common/login')
+        component: (resolve) => require(['@/components/common/login'], resolve)
     },
     {
         // 业务路由
         path: '/home',
         name: 'Layout',
-        component: (resolve) => require(['@/views/Layout/index'], resolve),
+        component: (resolve) => require(['@/components/Layout/index'], resolve),
         redirect: '/home/home1',
         children: [
             {
                 path: 'home1',
                 name: 'Home1',
-                component: lazyLoadHelper('pages/Home/home1')
+                component: lazyLoadHelper('Home/home1')
             },
             {
                 path: 'home2',
                 name: 'Home2',
-                component: lazyLoadHelper('pages/Home/home2')
+                component: lazyLoadHelper('Home/home2')
             },
             {
                 path: '*',
                 name: 'NotFound',
-                component: lazyLoadHelper('common/404')
+                component: (resolve) => require(['@/components/common/404'], resolve)
             }
         ]
     },
@@ -51,23 +51,23 @@ const routes: RouteConfig[] = [
         path: '/list',
         name: 'Layout',
         redirect: '/list/list1',
-        component: (resolve) => require(['@/views/Layout/index'], resolve),
+        component: (resolve) => require(['@/components/Layout/index'], resolve),
         children: [
             {
                 path: 'list1',
                 name: 'List',
-                component: lazyLoadHelper('pages/List/list1')
+                component: lazyLoadHelper('List/list1')
             },
             {
                 path: '*',
                 name: 'NotFound',
-                component: lazyLoadHelper('common/404')
+                component: (resolve) => require(['@/components/common/404'], resolve)
             }
         ]
     },
     {
         path: CommonUrls.NotFound,
-        component: lazyLoadHelper('common/404')
+        component: (resolve) => require(['@/components/common/404'], resolve)
     },
     {
         path: '*',

@@ -21,8 +21,8 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import HeaderCommon from '@/views/common/header-common.vue';
-import AsideMeun from '@/views/common/aside-menu/index.vue';
+import HeaderCommon from '@/components/common/header-common.vue';
+import AsideMeun from '@/components/common/aside-menu/index.vue';
 
 @Component({
     components: {

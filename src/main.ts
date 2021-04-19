@@ -5,7 +5,7 @@ import store from './store';
 
 import './plugins';
 
-import '@/styles/reset.css';
+import '@/static/styles/reset.css';
 
 Vue.config.productionTip = false;
 

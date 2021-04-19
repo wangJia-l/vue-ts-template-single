@@ -4,15 +4,15 @@
 
 /**
  * 非开发模式路由懒加载
- * @param componentName `./src/views`下的文件名
+ * @param componentName `./src/pages`下的文件名
  */
 export const lazyLoadHelper = (componentName: string): any => {
     if (process.env.NODE_ENV === 'development') {
-        const comp = require(`@/views/${componentName}.vue`);
+        const comp = require(`@/pages/${componentName}.vue`);
         return comp.default || comp;
     }
 
-    return () => import(/* webpackChunkName: "view-[request]-[index]" */ `@/views/${componentName}.vue`);
+    return () => import(/* webpackChunkName: "view-[request]-[index]" */ `@/pages/${componentName}.vue`);
 };
 
 // 公共路由 Path 常量
